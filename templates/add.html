@@ -1,0 +1,77 @@
+{% extends 'base.html' %}
+<!--Don't forget your import here-->
+{% block title %}Add A New Cafe{% endblock %}
+
+{% block content %}
+<div class="container">
+  <div class="row">
+    <div class="col-sm-12 col-md-8">
+    {%if is_editing:%}
+        <h1>Edit Cafe</h1>
+        {% else: %}
+      <h1>Add a new cafe into the database</h1>
+         {% endif %}
+
+      <!-- This is where your WTForm will go -->
+            <form method="POST"  novalidate>
+              {{ form.hidden_tag() }}
+
+            <div class="mb-3">
+          {{ form.name.label(class="form-label") }} {{ form.name(size=20,class="form-control") }}
+                            {% for error in form.name.errors %}
+                  <span class="text-danger">{{ error }}</span>
+              {% endfor %}
+            </div>
+            <div class="mb-3">
+          {{ form.map_url.label }} {{ form.map_url(size=20,class="form-control") }}
+              {% for error in form.map_url.errors %}
+                  <span class="text-danger">{{ error }}</span>
+              {% endfor %}
+            </div>
+            <div class="mb-3">
+          {{ form.img_url.label }} {{ form.img_url(size=20,class="form-control") }}
+              {% for error in form.img_url.errors %}
+                  <span class="text-danger">{{ error }}</span>
+              {% endfor %}
+            </div>
+            <div class="mb-3">
+          {{ form.location_name.label }} {{ form.location_name(size=20,class="form-control") }}
+                            {% for error in form.location_name.errors %}
+                  <span class="text-danger">{{ error }}</span>
+              {% endfor %}
+            </div>
+            <div class="mb-3">
+          {{ form.has_sockets.label }} {{ form.has_sockets(class="form-control") }}
+            </div>
+            <div class="mb-3">
+          {{ form.has_toilet.label }} {{ form.has_toilet(class="form-control") }}
+            </div>
+            <div class="mb-3">
+          {{ form.has_wifi.label }} {{ form.has_wifi(class="form-control") }}
+            </div>
+            <div class="mb-3">
+          {{ form.take_calls.label }} {{ form.take_calls(class="form-control") }}
+            </div>
+            <div class="mb-3">
+          {{ form.seats.label }} {{ form.seats(class="form-control") }}
+            </div>
+            <div class="mb-3">
+          {{ form.coffee_price.label }} {{ form.coffee_price(size=20,class="form-control") }}
+                            {% for error in form.coffee_price.errors %}
+                  <span class="text-danger">{{ error }}</span>
+              {% endfor %}
+
+            </div>
+            <div class="mb-3">
+          {{ form.submit(class="btn btn-light") }}
+            </div>
+
+      </form>
+
+
+
+    </div>
+  </div>
+</div>
+
+{% endblock %}

@@ -1,0 +1,82 @@
+{% extends 'base.html' %}
+{% block title %}Coffee and Wifi{% endblock %}
+
+{% block content %}
+<div class="container">
+<div class="px-4 py-5 my-5 text-center">
+    <h1 class="display-5 fw-bold ">☕Coffee & Wifi</h1>
+    <div class="col-lg-7 mx-auto">
+        <h2 class="lead mb-4 display-6">Discover cozy cafés with great coffee, reliable Wi-Fi, and the perfect vibe to work, study, or just unwind. Your next favorite spot is just a click away.</h2>
+    </div>
+</div>
+</div>
+<div class="container">
+<div class="cafe-grid">
+    {% for  cafe in cafes%}
+    <div class="card">
+        <div class="front" style="background-image: url('{{cafe.img_url}}');">
+             <div class="title">{{cafe.name}}</div>
+        </div>
+        <div class="back">
+            <div>
+    <div class="title"><a href="{{cafe.map_url}}" target="_blank">{{cafe.name}}</a></div>
+        <div class="info_style">
+
+          <p>Location: {{cafe.location}}</p>
+          <p>Coffee Price: {{cafe.coffee_price}}</p>
+          <p>Seat Availability: {{cafe.seats}}</p>
+            {% if cafe.has_sockets==1 %}
+            <p>Has socket: ✅</p>
+            {%else%}
+            <p>Has socket: ❌</p>
+            {%endif%}
+            {% if cafe.has_toilet==1 %}
+            <p>Has toilet: ✅</p>
+            {%else%}
+            <p>Has toilet: ❌</p>
+            {%endif%}
+            {% if cafe.has_wifi==1 %}
+            <p>Has wifi: ✅</p>
+            {%else%}
+            <p>Has wifi: ❌</p>
+            {%endif%}
+            {% if cafe.can_take_calls==1 %}
+            <p>Can take calls: ✅</p>
+            {%else%}
+            <p>Can take calls: ❌</p>
+            {%endif%}
+        </div><a href="{{url_for('edit_cafe',cafe_id=cafe.id)}}" class="button">Edit</a>
+        <a href="{{url_for('delete_cafe',cafe_id=cafe.id)}}" class="button delete-button">Delete</a>
+            </div>
+
+      </div>
+    </div>
+
+
+
+    {%endfor%}
+  </div>
+   <div class="text-center">
+    <a href="https://github.com/EmilioCoba"
+       target="_blank"
+       rel="noopener noreferrer"
+       aria-label="GitHub">
+        <i class="bi bi-github" ></i>
+    </a>
+    <a href="https://www.linkedin.com/in/aimilio-tsompa/"
+       target="_blank"
+       rel="noopener noreferrer"
+       aria-label="GitHub">
+        <i class="bi bi-linkedin" ></i>
+    </a>
+</div>
+
+
+
+</div>
+
+
+
+
+
+{% endblock %}
